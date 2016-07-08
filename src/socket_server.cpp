@@ -76,7 +76,7 @@ void SocketServer::runThread(){
   // Create and configure the server
   s_server = mg_create_server(NULL, SocketServer::ev_handler);
   mg_set_option(s_server, "document_root", "./public_html");
-  mg_set_option(s_server, "listening_port", "8080");
+  mg_set_option(s_server, "listening_port", "8081");
 
   // Serve request. Hit Ctrl-C to terminate the program
   printf("Starting on port %s\n", mg_get_option(s_server, "listening_port"));

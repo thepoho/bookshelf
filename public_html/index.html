@@ -1,155 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gameshow</title>
-	  
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/gameshow.css">
-    
-    <script src="/js/jquery-2.1.4.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/gameshow.js"></script>
+  <title>Bookshelf!</title>
 
-    <script type="text/javascript">
-      jQuery(function($){
-        GameShow.startup();
-      })
-    </script>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel='stylesheet' href='/css/spectrum.css' />
+  <link rel="stylesheet" href="/css/bookshelf.css">
 
-  </head>
+  <script src="/js/jquery-2.1.4.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src='/js/spectrum.js'></script>
+  <script src="/js/bookshelf.js"></script>
 
-  <body>
-    <nav class="navbar navbar-default navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
-          <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button> -->
-          <a class="navbar-brand" href="#">Gameshow</a>
-        </div>
-        <!-- 
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="../navbar/">Default</a></li>
-            <li class="active"><a href="./">Static top <span class="sr-only">(current)</span></a></li>
-            <li><a href="../navbar-fixed-top/">Fixed top</a></li>
-          </ul>
-        </div>
- -->
+  <script type="text/javascript">
+  jQuery(function($){
+    Bookshelf.startup();
+  })
+  </script>
+
+</head>
+
+<body>
+  <nav class="navbar navbar-default navbar-static-top navbar-inverse">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Bookshelf</a>
       </div>
-    </nav>
+
+    </div>
+  </nav>
 
 
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-12">
-        
-
-          <!-- Nav tabs -->
-          <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#lamps" aria-controls="lamps" role="tab" data-toggle="tab">Lamps</a></li>
-            <li role="presentation"><a href="#buttons" aria-controls="buttons" role="tab" data-toggle="tab">Buttons</a></li>
-            <li role="presentation"><a href="#coils" aria-controls="coils" role="tab" data-toggle="tab">Coils</a></li>
-            <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
-            <li role="presentation"><a href="#play" aria-controls="play" role="tab" data-toggle="tab">Play</a></li>
-          </ul>
-
-          <!-- Tab panes -->
-          <div class="tab-content">
-            
-            <div role="tabpanel" class="tab-pane active" id="lamps">
-              <h3>Lamps</h3>
-              <table class="table">
-                <tr>
-                  <td class="lamp_combo">
-                    <select class="lamp_state all_lamps">
-                      <option value="lamp_off">Off</option>
-                      <option value="lamp_on">On</option>
-                      <option value="lamp_flash_slow">Slow</option>
-                      <option value="lamp_flash_fast">Fast</option>
-                    </select>
-                  </td>
-                  <td class="lamp lamp_off">Off</td>
-                  <td class="lamp lamp_on">On</td>
-                  <td class="lamp lamp_flash_slow">Slow</td>
-                  <td class="lamp lamp_flash_fast">Fast</td>
-              </table>
-              <table class="table table-bordered table-condensed lamps">
-                
-              </table>
-            </div>
-            
-
-            <div role="tabpanel" class="tab-pane" id="buttons">
-                <h3>Buttons</h3>
-                <table class="table table-bordered table-condensed buttons"></table>
-            </div>
-
-
-            <div role="tabpanel" class="tab-pane" id="coils">
-              <h3>Coils</h3>
-              <table class="table table-bordered table-condensed coils"></table>     
-            </div>
-
-            <div role="tabpanel" class="tab-pane" id="settings">
-              
-              Game state:
-              <select class="game_state">
-              </select> 
-             
-              <div class="panel panel-default">
-                <div class="panel-heading">Game Log</div>
-                <div class="panel-body">
-                  <textarea class="log" style="width: 100%" rows='25'></textarea>
-                </div>
-              </div>
-            </div>
-
-            <div role="tabpanel" class="tab-pane" id="play">
-                <h3>Play</h3>
-                <table class="table table-bordered table-condensed play">
-                  <tr>
-                    <td class='left_flipper flipper' data-name='left_flipper'>
-                      <img src="/images/red_button.png"/>
-                    </td>
-                    <td class='right_flipper flipper' data-name='right_flipper' style="text-align: right">
-                      <img src="/images/red_button.png"/>
-                    </td>
-                  </tr>
-                </table>
-            </div>
-
-          </div>
-
-        </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <a class="btn btn-primary test">Test</a>
+        <br>
+        <br>
       </div>
     </div>
-  
-  </body>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <table class="bookshelf">
+          <tr>
+            <td data-row='0' data-col='0'>
+              <!-- <input type='text' class='colourpicker'/> -->
+            </td>
+            <td data-row='0' data-col='1'>
+              <!-- <input type='text' class='colourpicker'/> -->
+            </td>
+            <td data-row='0' data-col='2'>
+              <!-- <input type='text' class='colourpicker'/> -->
+            </td>
+            <td data-row='0' data-col='3'>
+              <!-- <input type='text' class='colourpicker'/> -->
+            </td>
+            <td data-row='0' data-col='4'>
+              <!-- <input type='text' class='colourpicker'/> -->
+            </td>
+          </tr>
+          <tr>
+            <td data-row='1' data-col='0'>
+              <!-- <input type='text' class='colourpicker'/> -->
+            </td>
+            <td data-row='1' data-col='1'>
+              <!-- <input type='text' class='colourpicker'/> -->
+            </td>
+            <td data-row='1' data-col='2'>
+              <!-- <input type='text' class='colourpicker'/> -->
+            </td>
+            <td data-row='1' data-col='3'>
+              <!-- <input type='text' class='colourpicker'/> -->
+            </td>
+            <td data-row='1' data-col='4'>
+              <!-- <input type='text' class='colourpicker'/> -->
+            </td>
+          </tr>
+          <tr>
+            <td data-row='2' data-col='0'>
+              <!-- <input type='text' class='colourpicker'/> -->
+            </td>
+            <td data-row='2' data-col='1'>
+              <!-- <input type='text' class='colourpicker'/> -->
+            </td>
+            <td data-row='2' data-col='2'>
+              <!-- <input type='text' class='colourpicker'/> -->
+            </td>
+            <td data-row='2' data-col='3'>
+              <!-- <input type='text' class='colourpicker'/> -->
+            </td>
+            <td data-row='2' data-col='4'>
+              <!-- <input type='text' class='colourpicker'/> -->
+            </td>
+          </tr>
+          <tr>
+            <td data-row='3' data-col='0'>
+              <!-- <input type='text' class='colourpicker'/> -->
+            </td>
+            <td data-row='3' data-col='1'>
+              <!-- <input type='text' class='colourpicker'/> -->
+            </td>
+            <td data-row='3' data-col='2'>
+              <!-- <input type='text' class='colourpicker'/> -->
+            </td>
+            <td data-row='3' data-col='3'>
+              <!-- <input type='text' class='colourpicker'/> -->
+            </td>
+            <td data-row='3' data-col='4'>
+              <!-- <input type='text' class='colourpicker'/> -->
+            </td>
+          </tr>
+          <tr>
+            <td data-row='4' data-col='0'>
+              <!-- <input type='text' class='colourpicker'/> -->
+            </td>
+            <td data-row='4' data-col='1'>
+              <!-- <input type='text' class='colourpicker'/> -->
+            </td>
+            <td data-row='4' data-col='2'>
+              <!-- <input type='text' class='colourpicker'/> -->
+            </td>
+            <td data-row='4' data-col='3'>
+              <!-- <input type='text' class='colourpicker'/> -->
+            </td>
+            <td data-row='4' data-col='4'>
+              <!-- <input type='text' class='colourpicker'/> -->
+            </td>
+          </tr>
+        </table>
+
+
+
+      </div>
+    </div>
+  </div>
+
+</body>
 </html>
