@@ -60,7 +60,7 @@ void Bookshelf::run(){
 
     //work out deltas
     unsigned int millis = pPinIo->getMillis();
-    unsigned int delta = millis - lastTickTime;
+    // unsigned int delta = millis - lastTickTime;
     lastTickTime = millis;
 
     processWebMessages();
@@ -78,12 +78,13 @@ void Bookshelf::processWebMessages()
     string message = document->FindMember("message")->value.GetString();
     // cout << "Got message " << document;
 
-    // if(message.compare("get_buttons") == 0){
-    //   pGameController->sendWebMessage(pGameController->buttonController()->getInfoString());
+    if(message.compare("ready") == 0){
+      // pGameController->sendWebMessage(pGameController->buttonController()->getInfoString());
 
-    // }else if(message.compare("get_lamps") == 0){
+    }else if(message.compare("set_cell") == 0){
+
     //   pGameController->sendWebMessage(pGameController->lampController()->getInfoString());
-
+    }
     // }else if(message.compare("get_coils") == 0){
     //   pGameController->sendWebMessage(pGameController->coilController()->getInfoString());
 
