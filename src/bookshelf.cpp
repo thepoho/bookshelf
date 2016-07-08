@@ -2,12 +2,17 @@
 
 Bookshelf::Bookshelf()
 {
+  pPinIo = new PinIO();
+  pPinIo->startup();
 
+  pSocketServer = new SocketServer();
+  pSocketServer->startup();
 }
 
 Bookshelf::~Bookshelf()
 {
-
+  delete(pPinIo);
+  delete(pSocketServer);
 }
 
 void Bookshelf::test(){
@@ -54,7 +59,7 @@ void Bookshelf::run(){
   while(1){
 
     //work out deltas
-    unsigned int millis = pGameController->pinIO()->getMillis();
+    unsigned int millis = pPinIo->getMillis();
     unsigned int delta = millis - lastTickTime;
     lastTickTime = millis;
 
@@ -66,7 +71,7 @@ void Bookshelf::run(){
 
 void Bookshelf::processWebMessages()
 {
-  Document* document = pGameController->socketServer()->getNextIncomingMessage();
+  Document* document = pSocketServer->getNextIncomingMessage();
   if(0 != document){
     // cout << "Got document " << document;
 
