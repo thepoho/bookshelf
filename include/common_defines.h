@@ -23,6 +23,10 @@ using namespace std;
 #define SIZEOF(n) ((int)(sizeof(n) / sizeof(n[0])))
 // #define NULL (0)
 #define FALSE (0)
+
+#define ROWS (5)
+#define COLS (5)
+
 #define TRUE  (1)
 
 #endif

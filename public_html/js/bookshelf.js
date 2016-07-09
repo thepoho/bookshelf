@@ -74,11 +74,14 @@ Bookshelf = {
     var color = new tinycolor(td.css("background-color"));
     var row = td.attr("data-row");
     var col = td.attr("data-col");
+    var rgb = color.toRgb();
     var data = {
       message: "set_cell",
-      value: color.toRgb(),
-      row: row,
-      col: col
+      r:   rgb.r,
+      g:   rgb.g,
+      b:   rgb.b,
+      row: parseInt(row),
+      col: parseInt(col)
     }
     Bookshelf.sendMessage(data);
   },

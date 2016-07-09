@@ -7,6 +7,14 @@ Bookshelf::Bookshelf()
 
   pSocketServer = new SocketServer();
   pSocketServer->startup();
+  
+  for(int r=0; r<ROWS; r++){
+    for(int c=0; c<COLS; c++){
+      colours[r][c].r = 0;
+      colours[r][c].g = 0;
+      colours[r][c].b = 0;
+    }
+  }
 }
 
 Bookshelf::~Bookshelf()
@@ -82,37 +90,15 @@ void Bookshelf::processWebMessages()
       // pGameController->sendWebMessage(pGameController->buttonController()->getInfoString());
 
     }else if(message.compare("set_cell") == 0){
+      int row = document->FindMember("row")->value.GetInt();
+      int col = document->FindMember("col")->value.GetInt();
 
-    //   pGameController->sendWebMessage(pGameController->lampController()->getInfoString());
+      colours[row][col].r = (char)document->FindMember("r")->value.GetInt();
+      colours[row][col].g = (char)document->FindMember("g")->value.GetInt();
+      colours[row][col].b = (char)document->FindMember("b")->value.GetInt();
+      
+     
     }
-    // }else if(message.compare("get_coils") == 0){
-    //   pGameController->sendWebMessage(pGameController->coilController()->getInfoString());
-
-    // }else if(message.compare("set_lamp_state") == 0){
-    //   string name = document->FindMember("name")->value.GetString();
-    //   LampState state = (LampState)document->FindMember("value")->value.GetInt();
-    //   pGameController->lampController()->setLampState(name, state);
-
-    // }else if(message.compare("set_coil_state") == 0){
-    //   string name = document->FindMember("name")->value.GetString();
-    //   int state = document->FindMember("value")->value.GetInt();
-    //   pGameController->coilController()->setCoilState(name, state);
-
-    // }else if(message.compare("set_button_state") == 0){
-    //   string name = document->FindMember("name")->value.GetString();
-    //   int state = document->FindMember("value")->value.GetInt();
-    //   pGameController->buttonController()->overrideButtonState(name, state);
-
-    // }else if(message.compare("get_game_states") == 0){ //note the plural S
-
-    //   pGameState->sendAllStatesToWeb();
-    // }else if(message.compare("get_game_state") == 0){
-    //   pGameState->sendToWeb();
-
-    // }else if(message.compare("set_game_state") == 0){
-    //   string state = document->FindMember("value")->value.GetString();
-    //   setGameState(state);
-    // }
 
     //I don't like this here.
     delete(document);

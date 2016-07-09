@@ -21,6 +21,14 @@ public:
   // SocketServer*             socketServer()           { return pSocketServer; }
 
 private:
+ struct Colour {
+   char r;
+   char g;
+   char b;
+ };
+
+  Colour colours[ROWS][COLS];
+
   unsigned int lastTickTime;
 
   PinIO* pPinIo;
