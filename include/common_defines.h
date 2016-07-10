@@ -29,4 +29,8 @@ using namespace std;
 
 #define TRUE  (1)
 
+
+#define LIGHTPIN_CLOCK (10)
+#define LIGHTPIN_DATA (14)
+
 #endif

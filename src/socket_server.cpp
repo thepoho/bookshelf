@@ -128,7 +128,7 @@ int SocketServer::sendWsReply(struct mg_connection *conn)
   if(conn->is_websocket){
     // cout << "WS: " << conn->content << endl;
 
-    printf("%.*s\n", (int) conn->content_len, conn->content);
+    // printf("%.*s\n", (int) conn->content_len, conn->content);
     if((int) conn->content_len >= 2047){
       cout << "======= WS message too big ========" << endl;
       printf("[%.*s]\n", (int) conn->content_len, conn->content);

@@ -7,7 +7,7 @@ Bookshelf::Bookshelf()
 
   pSocketServer = new SocketServer();
   pSocketServer->startup();
-  
+
   for(int r=0; r<ROWS; r++){
     for(int c=0; c<COLS; c++){
       colours[r][c].r = 0;
@@ -15,6 +15,14 @@ Bookshelf::Bookshelf()
       colours[r][c].b = 0;
     }
   }
+
+  pPinIo->setPinMode(LIGHTPIN_CLOCK,OUTPUT);
+  pPinIo->setPinMode(LIGHTPIN_DATA,OUTPUT);
+  // pinMode (LIGHTPIN_DATA,OUTPUT);
+
+  pPinIo->setPullUpDnControl(LIGHTPIN_CLOCK,1) ;
+  pPinIo->setPullUpDnControl(LIGHTPIN_DATA,1) ;
+
 }
 
 Bookshelf::~Bookshelf()
@@ -88,6 +96,14 @@ void Bookshelf::processWebMessages()
 
     if(message.compare("ready") == 0){
       // pGameController->sendWebMessage(pGameController->buttonController()->getInfoString());
+      for(int r=0; r<ROWS; r++){
+        for(int c=0; c<COLS; c++){
+          colours[r][c].r = 0;
+          colours[r][c].g = 0;
+          colours[r][c].b = 0;
+        }
+      }
+      flushLights();
 
     }else if(message.compare("set_cell") == 0){
       int row = document->FindMember("row")->value.GetInt();
@@ -96,11 +112,71 @@ void Bookshelf::processWebMessages()
       colours[row][col].r = (char)document->FindMember("r")->value.GetInt();
       colours[row][col].g = (char)document->FindMember("g")->value.GetInt();
       colours[row][col].b = (char)document->FindMember("b")->value.GetInt();
-      
-     
+
+      flushLights();
     }
 
     //I don't like this here.
     delete(document);
   }
+}
+
+void Bookshelf::flushLights()
+{
+  // printf("%d",colours[0][0].r);
+
+  for(int r=0; r<ROWS; r++){
+    for(int c=0; c<COLS; c++){
+
+      for(int i=0; i<8; i++){
+        char bit = (1<<(7-i));
+        // if(r ==0 & c == 0){
+        //   printf("r: %d", colours[0][0].r);
+        //   printf("bit: %d", bit);
+        //   printf("\n");
+        //   // cout << colours[0][0].r << " : " << bit;
+        // }
+        if(bit & colours[r][c].r){
+          // if(r ==0 & c == 0){
+          //   cout << 1;
+          // }
+          pPinIo->pinWrite(LIGHTPIN_DATA, HIGH);
+        }else{
+          // if(r ==0 & c == 0){
+          //   cout << 0;
+          // }
+          pPinIo->pinWrite(LIGHTPIN_DATA, LOW);
+        }
+        pPinIo->pinWrite(LIGHTPIN_CLOCK, HIGH);
+        pPinIo->pinWrite(LIGHTPIN_CLOCK, LOW);
+      }
+
+
+
+      for(int i=0; i<8; i++){
+        char bit = (1<<(7-i));
+        if(bit & colours[r][c].g){
+          pPinIo->pinWrite(LIGHTPIN_DATA, HIGH);
+        }else{
+          pPinIo->pinWrite(LIGHTPIN_DATA, LOW);
+        }
+        pPinIo->pinWrite(LIGHTPIN_CLOCK, HIGH);
+        pPinIo->pinWrite(LIGHTPIN_CLOCK, LOW);
+      }
+
+
+      for(int i=0; i<8; i++){
+        char bit = (1<<(7-i));
+        if(bit & colours[r][c].b){
+          pPinIo->pinWrite(LIGHTPIN_DATA, HIGH);
+        }else{
+          pPinIo->pinWrite(LIGHTPIN_DATA, LOW);
+        }
+        pPinIo->pinWrite(LIGHTPIN_CLOCK, HIGH);
+        pPinIo->pinWrite(LIGHTPIN_CLOCK, LOW);
+      }
+      // printf("\n");
+    }
+  }
+  pPinIo->doDelay(1);
 }

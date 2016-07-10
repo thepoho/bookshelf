@@ -18,7 +18,13 @@ Bookshelf = {
 
     $("a.test").click(function(){
       Bookshelf.setTestColours();
-    })
+    });
+
+    $("a.test1").spectrum({
+      change: Bookshelf.setAllColour,
+      move: Bookshelf.setAllColour,
+      showPalette: true,
+    });
 
     // $("select.game_state").change(function(){
     //   var data = {
@@ -65,7 +71,6 @@ Bookshelf = {
 
   tdColourChanged: function(color){
     $(this).css("background-color", color.toHexString());
-    window.poho = color;
     Bookshelf.sendTdInfo($(this));
   },
 
@@ -91,6 +96,13 @@ Bookshelf = {
       var num = 360 / 25 * idx;
       var str = "hsl("+num+", 100%, 50%)";
       $(e).css("background-color", str);
+      Bookshelf.sendTdInfo(e);
+    });
+  },
+
+  setAllColour: function(color){
+    $.each($("table.bookshelf tr td"), function(idx, e){
+      $(e).css("background-color", color.toHexString());
       Bookshelf.sendTdInfo(e);
     });
   }

@@ -11,6 +11,9 @@
   #define HIGH 1
   #define INPUT 0
   #define OUTPUT 1
+  // #define PUD_OFF      (0)
+  // #define PUD_DOWN     (1)
+  // #define PUD_UP       (2)
 #endif
 
 #define SERIAL_DATA_PIN 23
@@ -37,6 +40,8 @@ public:
 
   void flushSerialData();
   void setSerialOutput(int num, bool state);
+
+  void setPullUpDnControl(int num, int pud);
 
 private:
   bool currentSerialState[SERIAL_NUM_OUTPUTS];

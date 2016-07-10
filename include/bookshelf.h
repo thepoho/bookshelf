@@ -34,6 +34,8 @@ private:
   PinIO* pPinIo;
   SocketServer* pSocketServer;
 
+  void flushLights();
+
 };
 
 #endif //_BOOKSHELF_H
