@@ -20,8 +20,12 @@ Bookshelf::Bookshelf()
   pPinIo->setPinMode(LIGHTPIN_DATA,OUTPUT);
   // pinMode (LIGHTPIN_DATA,OUTPUT);
 
-  pPinIo->setPullUpDnControl(LIGHTPIN_CLOCK,1) ;
-  pPinIo->setPullUpDnControl(LIGHTPIN_DATA,1) ;
+  pPinIo->setPullUpDnControl(LIGHTPIN_CLOCK,1);
+  pPinIo->setPullUpDnControl(LIGHTPIN_DATA,1);
+
+  mode = "controlled";
+
+  flushLights();
 
 }
 
@@ -81,6 +85,13 @@ void Bookshelf::run(){
 
     processWebMessages();
 
+    if(mode.compare("rainbow") == 0){
+      //Do the rainbow cycle here
+      flushLights();
+    }
+    // if(lightsDirty){
+    // }
+
   }
 }
 
@@ -113,7 +124,12 @@ void Bookshelf::processWebMessages()
       colours[row][col].g = (char)document->FindMember("g")->value.GetInt();
       colours[row][col].b = (char)document->FindMember("b")->value.GetInt();
 
+      mode = "controlled";
       flushLights();
+    }else if(message.compare("set_mode") == 0){
+      mode = document->FindMember("name")->value.GetString();
+
+      // flushLights();
     }
 
     //I don't like this here.

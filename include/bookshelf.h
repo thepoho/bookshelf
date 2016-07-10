@@ -36,6 +36,8 @@ private:
 
   void flushLights();
 
+  string mode;
+
 };
 
 #endif //_BOOKSHELF_H
