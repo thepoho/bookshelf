@@ -152,7 +152,7 @@ void Bookshelf::flushLights()
         //   printf("\n");
         //   // cout << colours[0][0].r << " : " << bit;
         // }
-        if(bit & colours[r][c].r){
+        if(bit & colours[r][c].b){
           // if(r ==0 & c == 0){
           //   cout << 1;
           // }
@@ -183,7 +183,7 @@ void Bookshelf::flushLights()
 
       for(int i=0; i<8; i++){
         char bit = (1<<(7-i));
-        if(bit & colours[r][c].b){
+        if(bit & colours[r][c].r){
           pPinIo->pinWrite(LIGHTPIN_DATA, HIGH);
         }else{
           pPinIo->pinWrite(LIGHTPIN_DATA, LOW);
