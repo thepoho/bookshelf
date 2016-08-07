@@ -30,7 +30,7 @@ using namespace std;
 #define TRUE  (1)
 
 
-#define LIGHTPIN_CLOCK (10)
-#define LIGHTPIN_DATA (14)
+#define LIGHTPIN_CLOCK (8)
+#define LIGHTPIN_DATA (9)
 
 #endif
