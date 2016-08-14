@@ -29,6 +29,8 @@ using namespace std;
 
 #define TRUE  (1)
 
+#define LIGHTS_PER_SHELF (2)
+
 
 #define LIGHTPIN_CLOCK (8)
 #define LIGHTPIN_DATA (9)

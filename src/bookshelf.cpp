@@ -143,55 +143,44 @@ void Bookshelf::flushLights()
 
   for(int r=0; r<ROWS; r++){
     for(int c=0; c<COLS; c++){
-
-      for(int i=0; i<8; i++){
-        char bit = (1<<(7-i));
-        // if(r ==0 & c == 0){
-        //   printf("r: %d", colours[0][0].r);
-        //   printf("bit: %d", bit);
-        //   printf("\n");
-        //   // cout << colours[0][0].r << " : " << bit;
-        // }
-        if(bit & colours[r][c].b){
-          // if(r ==0 & c == 0){
-          //   cout << 1;
-          // }
-          pPinIo->pinWrite(LIGHTPIN_DATA, HIGH);
-        }else{
-          // if(r ==0 & c == 0){
-          //   cout << 0;
-          // }
-          pPinIo->pinWrite(LIGHTPIN_DATA, LOW);
+      
+      for(int s=0; s<LIGHTS_PER_SHELF; s++){
+        for(int i=0; i<8; i++){
+          char bit = (1<<(7-i));
+          if(bit & colours[r][c].b){
+            pPinIo->pinWrite(LIGHTPIN_DATA, HIGH);
+          }else{
+            pPinIo->pinWrite(LIGHTPIN_DATA, LOW);
+          }
+          pPinIo->pinWrite(LIGHTPIN_CLOCK, HIGH);
+          pPinIo->pinWrite(LIGHTPIN_CLOCK, LOW);
         }
-        pPinIo->pinWrite(LIGHTPIN_CLOCK, HIGH);
-        pPinIo->pinWrite(LIGHTPIN_CLOCK, LOW);
-      }
 
 
 
-      for(int i=0; i<8; i++){
-        char bit = (1<<(7-i));
-        if(bit & colours[r][c].g){
-          pPinIo->pinWrite(LIGHTPIN_DATA, HIGH);
-        }else{
-          pPinIo->pinWrite(LIGHTPIN_DATA, LOW);
+        for(int i=0; i<8; i++){
+          char bit = (1<<(7-i));
+          if(bit & colours[r][c].g){
+            pPinIo->pinWrite(LIGHTPIN_DATA, HIGH);
+          }else{
+            pPinIo->pinWrite(LIGHTPIN_DATA, LOW);
+          }
+          pPinIo->pinWrite(LIGHTPIN_CLOCK, HIGH);
+          pPinIo->pinWrite(LIGHTPIN_CLOCK, LOW);
         }
-        pPinIo->pinWrite(LIGHTPIN_CLOCK, HIGH);
-        pPinIo->pinWrite(LIGHTPIN_CLOCK, LOW);
-      }
 
 
-      for(int i=0; i<8; i++){
-        char bit = (1<<(7-i));
-        if(bit & colours[r][c].r){
-          pPinIo->pinWrite(LIGHTPIN_DATA, HIGH);
-        }else{
-          pPinIo->pinWrite(LIGHTPIN_DATA, LOW);
+        for(int i=0; i<8; i++){
+          char bit = (1<<(7-i));
+          if(bit & colours[r][c].r){
+            pPinIo->pinWrite(LIGHTPIN_DATA, HIGH);
+          }else{
+            pPinIo->pinWrite(LIGHTPIN_DATA, LOW);
+          }
+          pPinIo->pinWrite(LIGHTPIN_CLOCK, HIGH);
+          pPinIo->pinWrite(LIGHTPIN_CLOCK, LOW);
         }
-        pPinIo->pinWrite(LIGHTPIN_CLOCK, HIGH);
-        pPinIo->pinWrite(LIGHTPIN_CLOCK, LOW);
       }
-      // printf("\n");
     }
   }
   pPinIo->doDelay(1);
