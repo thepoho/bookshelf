@@ -60,6 +60,7 @@ Bookshelf = {
 
   sendMessage: function(hash){
     var data = JSON.stringify(hash);
+    console.log(data);
     Bookshelf.websocket.send(data);
   },
 

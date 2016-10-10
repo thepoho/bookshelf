@@ -1,5 +1,5 @@
 #!/bin/bash
 make clean_arm
-make arm && scp bookshelf_arm pi@192.168.0.23:/home/pi/bookshelf_arm
-rsync -avz public_html pi@192.168.0.23:/home/pi/bookshelf_arm
-ssh 192.168.0.23 -lpi -t 'sudo /bin/bash -c "cd /home/pi/bookshelf_arm && /home/pi/bookshelf_arm/bookshelf_arm"'
+make arm && scp bookshelf_arm pi@bookshelf:/home/pi/bookshelf_arm
+rsync -avz public_html pi@bookshelf:/home/pi/bookshelf_arm
+ssh bookshelf -lpi -t 'sudo /bin/bash -c "cd /home/pi/bookshelf_arm && /home/pi/bookshelf_arm/bookshelf_arm --test"'
