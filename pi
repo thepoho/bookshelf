@@ -2,4 +2,4 @@
 make clean_arm
 make arm && scp bookshelf_arm pi@bookshelf:/home/pi/bookshelf_arm
 rsync -avz public_html pi@bookshelf:/home/pi/bookshelf_arm
-ssh bookshelf -lpi -t 'sudo /bin/bash -c "cd /home/pi/bookshelf_arm && /home/pi/bookshelf_arm/bookshelf_arm --test"'
+ssh bookshelf -lpi -t 'sudo /bin/bash -c "cd /home/pi/bookshelf_arm && /home/pi/bookshelf_arm/bookshelf_arm"'

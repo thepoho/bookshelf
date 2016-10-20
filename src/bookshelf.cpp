@@ -114,7 +114,7 @@ void Bookshelf::run(){
       flushLights();
     }
     if(lightsDirty){
-      test();
+      flushLights();
     }
 
   }
@@ -177,33 +177,33 @@ void Bookshelf::flushLights()
       for(int s=0; s<LIGHTS_PER_SHELF; s++){
         for(int i=0; i<8; i++){
           char bit = (1<<(7-i));
-          //if(bit & colours[r][c].b){
+          if(bit & colours[r][c].r){
             pPinIo->pinWrite(LIGHTPIN_DATA, HIGH);
-          // }else{
-          //   pPinIo->pinWrite(LIGHTPIN_DATA, LOW);
-          // }
+          }else{
+            pPinIo->pinWrite(LIGHTPIN_DATA, LOW);
+          }
           pPinIo->pinWrite(LIGHTPIN_CLOCK, HIGH);
           pPinIo->pinWrite(LIGHTPIN_CLOCK, LOW);
         }
 
         for(int i=0; i<8; i++){
           char bit = (1<<(7-i));
-          //if(bit & colours[r][c].g){
-            // pPinIo->pinWrite(LIGHTPIN_DATA, HIGH);
-          // }else{
+          if(bit & colours[r][c].g){
+            pPinIo->pinWrite(LIGHTPIN_DATA, HIGH);
+          }else{
             pPinIo->pinWrite(LIGHTPIN_DATA, LOW);
-          // }
+          }
           pPinIo->pinWrite(LIGHTPIN_CLOCK, HIGH);
           pPinIo->pinWrite(LIGHTPIN_CLOCK, LOW);
         }
 
         for(int i=0; i<8; i++){
           char bit = (1<<(7-i));
-          //if(bit & colours[r][c].r){
-            // pPinIo->pinWrite(LIGHTPIN_DATA, HIGH);
-          // }else{
+          if(bit & colours[r][c].b){
+            pPinIo->pinWrite(LIGHTPIN_DATA, HIGH);
+          }else{
             pPinIo->pinWrite(LIGHTPIN_DATA, LOW);
-          // }
+          }
           pPinIo->pinWrite(LIGHTPIN_CLOCK, HIGH);
           pPinIo->pinWrite(LIGHTPIN_CLOCK, LOW);
         }

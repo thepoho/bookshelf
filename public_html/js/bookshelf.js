@@ -94,7 +94,7 @@ Bookshelf = {
 
   setTestColours: function(){
     $.each($("table.bookshelf tr td"), function(idx, e){
-      var num = 360 / 25 * idx;
+      var num = 360 / ($("td").length) * idx;
       var str = "hsl("+num+", 100%, 50%)";
       $(e).css("background-color", str);
       Bookshelf.sendTdInfo(e);
