@@ -29,7 +29,7 @@ using namespace std;
 
 #define TRUE  (1)
 
-#define LIGHTS_PER_SHELF (2)
+#define LIGHTS_PER_SHELF (1)
 
 
 #define LIGHTPIN_CLOCK (8)

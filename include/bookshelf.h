@@ -16,11 +16,17 @@ public:
   void test();
 
   void processWebMessages();
+  void startup();
 
   // PinIO* pinIO() { return pPinIo; }
   // SocketServer*             socketServer()           { return pSocketServer; }
 
 private:
+void setupPinIO();
+void setupSocketServer();
+void initializeLights();
+
+
  struct Colour {
    char r;
    char g;
@@ -37,6 +43,8 @@ private:
   void flushLights();
 
   string mode;
+
+  bool lightsDirty;
 
 };
 
