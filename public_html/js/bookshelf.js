@@ -20,26 +20,15 @@ Bookshelf = {
       Bookshelf.setTestColours();
     });
 
+    $("a.shutdown").click(function(){
+      Bookshelf.sendMessage({message: "shutdown"});
+    });
+
     $("a.test1").spectrum({
       change: Bookshelf.setAllColour,
       move: Bookshelf.setAllColour,
       showPalette: true,
     });
-
-    // $("select.game_state").change(function(){
-    //   var data = {
-    //     message: "set_game_state",
-    //     value: $(this).val()
-    //   };
-    //   Bookshelf.sendMessage(data);
-    // });
-
-    //prevent long presses from opening context menu
-    window.oncontextmenu = function(event) {
-      event.preventDefault();
-      event.stopPropagation();
-      return false;
-    };
 
   },
 

@@ -158,6 +158,10 @@ void Bookshelf::processWebMessages()
       mode = document->FindMember("name")->value.GetString();
 
       // flushLights();
+    }else if(message.compare("shutdown") == 0){
+      printf("Shutdown!!");
+      system("shutdown -h now");
+      // flushLights();
     }
 
     //I don't like this here.
